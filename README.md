@@ -32,42 +32,31 @@ This project solves that classification problem using supervised machine learnin
 
 ---
 
-# 🏗️ Project Architecture
+```mermaid
+flowchart TD
 
-```text
-Placement Dataset (CSV)
-           │
-           ▼
-    Data Cleaning
-           │
-           ▼
- Feature Engineering
-           │
-           ▼
-  One-Hot Encoding
-           │
-           ▼
- Train/Test Split
-           │
-           ▼
- Model Training
-(Random Forest Classifier)
-           │
-           ▼
-     Model Export
-  placement_model.pkl
-           │
-           ▼
-      FastAPI API
-           │
-           ▼
-      Swagger UI
-           │
-           ▼
-      End Users
+A[Placement Dataset] --> B[Data Cleaning]
+
+B --> C[Feature Engineering]
+
+C --> D[One-Hot Encoding]
+
+D --> E[Train-Test Split]
+
+E --> F[Random Forest Classifier]
+
+F --> G[placement_model.pkl]
+
+G --> H[FastAPI Backend]
+
+H --> I[Swagger UI]
+
+H --> J[Postman]
+
+I --> K[Prediction Response]
+
+J --> K
 ```
-
----
 
 # 📂 Project Structure
 
