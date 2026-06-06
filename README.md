@@ -113,6 +113,27 @@ Not Placed
 ## Step 1: Data Collection
 
 Dataset obtained from Kaggle.
+```mermaid
+flowchart LR
+
+A[Raw Dataset] --> B[EDA]
+
+B --> C[Missing Value Analysis]
+
+C --> D[Categorical Encoding]
+
+D --> E[Feature Selection]
+
+E --> F[Model Training]
+
+F --> G[Model Evaluation]
+
+G --> H[Model Serialization]
+
+H --> I[API Development]
+
+I --> J[Cloud Deployment]
+```
 
 ---
 
