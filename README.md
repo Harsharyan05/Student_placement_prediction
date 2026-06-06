@@ -255,7 +255,26 @@ Response:
   "message": "Student Placement Prediction API Running"
 }
 ```
+```mermaid
+sequenceDiagram
 
+participant User
+participant Swagger
+participant FastAPI
+participant ML_Model
+
+User->>Swagger: Enter Student Details
+
+Swagger->>FastAPI: POST /predict
+
+FastAPI->>ML_Model: Predict()
+
+ML_Model-->>FastAPI: Placement Result
+
+FastAPI-->>Swagger: JSON Response
+
+Swagger-->>User: Placed / Not Placed
+```
 ---
 
 ### Predict Placement
