@@ -1,34 +1,39 @@
 # 🎓 Student Placement Predictor
 
-A Machine Learning project that predicts whether a student is likely to be placed based on academic performance, work experience, and other educational factors.
-
-## 🚀 Live Demo
-
-Coming Soon (Render Deployment)
+A Machine Learning-powered web application that predicts whether a student is likely to be placed based on academic performance, educational background, work experience, and employability factors.
 
 ---
 
-# 📌 Project Overview
+# 🚀 Project Overview
 
-This project uses Machine Learning to analyze student academic records and predict placement status.
+This project uses Machine Learning to analyze student records and predict placement outcomes.
 
-The model is trained on a placement dataset and exposed through a FastAPI REST API that can be tested using Swagger UI or Postman.
+The solution covers the complete ML lifecycle:
+
+* Data Collection
+* Data Cleaning
+* Feature Engineering
+* Model Training
+* Model Evaluation
+* FastAPI Backend Development
+* REST API Creation
+* Cloud Deployment
 
 ---
 
 # 🎯 Problem Statement
 
-Can we predict whether a student will get placed based on:
+Can we predict whether a student will get placed based on their:
 
-- SSC Percentage
-- HSC Percentage
-- Degree Percentage
-- MBA Percentage
-- Work Experience
-- Educational Background
-- Employability Test Score
+* SSC Performance
+* HSC Performance
+* Degree Performance
+* MBA Performance
+* Work Experience
+* Employability Test Score
+* Academic Background
 
-This project solves that classification problem using supervised machine learning.
+This project solves that problem using supervised machine learning classification techniques.
 
 ---
 
@@ -60,59 +65,10 @@ I --> K[Prediction Response]
 J --> K
 ```
 
-# 📂 Project Structure
-
-```text
-student-placement-predictor/
-│
-├── app.py
-├── train_model.py
-├── placement.csv
-├── placement_model.pkl
-├── feature_names.pkl
-├── requirements.txt
-├── README.md
-```
-
 ---
 
-# 📊 Dataset Features
+# 🔄 Machine Learning Workflow
 
-| Feature | Description |
-|----------|-------------|
-| gender | Student Gender |
-| ssc_p | Secondary School Percentage |
-| ssc_b | SSC Board |
-| hsc_p | Higher Secondary Percentage |
-| hsc_b | HSC Board |
-| hsc_s | HSC Stream |
-| degree_p | Degree Percentage |
-| degree_t | Degree Type |
-| workex | Work Experience |
-| etest_p | Employability Test Percentage |
-| specialisation | MBA Specialisation |
-| mba_p | MBA Percentage |
-
-Target Variable:
-
-```text
-status
-```
-
-Values:
-
-```text
-Placed
-Not Placed
-```
-
----
-
-# 🧠 Machine Learning Workflow
-
-## Step 1: Data Collection
-
-Dataset obtained from Kaggle.
 ```mermaid
 flowchart LR
 
@@ -137,55 +93,94 @@ I --> J[Cloud Deployment]
 
 ---
 
-## Step 2: Data Exploration
-
-Performed:
-
-- Missing value analysis
-- Feature inspection
-- Data type analysis
-- Target distribution check
-
----
-
-## Step 3: Feature Engineering
-
-Categorical features converted using:
-
-```python
-pd.get_dummies()
-```
-
-Examples:
+# 📂 Project Structure
 
 ```text
-Gender → Male/Female
-Work Experience → Yes/No
-Specialisation → Mkt&Fin / Mkt&HR
+student-placement-predictor/
+
+│
+├── placement.csv
+├── train_model.py
+├── app.py
+├── placement_model.pkl
+├── feature_names.pkl
+├── requirements.txt
+├── README.md
 ```
 
 ---
 
-## Step 4: Model Training
+# 📊 Dataset Information
 
-Models Tested:
+Dataset Source:
 
-- Logistic Regression
-- Random Forest Classifier
-- Gradient Boosting Classifier
-- XGBoost Classifier
+Campus Placement Dataset (Kaggle)
 
-Best Model:
+Features:
+
+| Feature        | Description                   |
+| -------------- | ----------------------------- |
+| gender         | Student Gender                |
+| ssc_p          | Secondary School Percentage   |
+| ssc_b          | SSC Board                     |
+| hsc_p          | Higher Secondary Percentage   |
+| hsc_b          | HSC Board                     |
+| hsc_s          | HSC Stream                    |
+| degree_p       | Degree Percentage             |
+| degree_t       | Degree Type                   |
+| workex         | Work Experience               |
+| etest_p        | Employability Test Percentage |
+| specialisation | MBA Specialisation            |
+| mba_p          | MBA Percentage                |
+
+Target Variable:
 
 ```text
-Random Forest Classifier
+status
 ```
 
-Accuracy Achieved:
+Values:
 
 ```text
-83.72%
+Placed
+Not Placed
 ```
+
+---
+
+# 📈 Feature Engineering Pipeline
+
+```mermaid
+flowchart TD
+
+A[Categorical Features]
+
+A --> B[Gender]
+
+A --> C[SSC Board]
+
+A --> D[HSC Board]
+
+A --> E[Degree Type]
+
+A --> F[Work Experience]
+
+A --> G[Specialisation]
+
+B --> H[One-Hot Encoding]
+C --> H
+D --> H
+E --> H
+F --> H
+G --> H
+
+H --> I[Machine Learning Features]
+```
+
+---
+
+# 🧠 Model Training Pipeline
+
 ```mermaid
 flowchart TD
 
@@ -197,7 +192,7 @@ B --> C[Drop Salary Column]
 
 C --> D[Encode Categorical Features]
 
-D --> E[Train Test Split]
+D --> E[Train-Test Split]
 
 E --> F[Random Forest]
 
@@ -213,48 +208,32 @@ I --> J[Best Model Selection]
 
 J --> K[placement_model.pkl]
 ```
----
-
-## Step 5: Model Serialization
-
-Trained model saved using:
-
-```python
-joblib.dump()
-```
-
-Generated files:
-
-```text
-placement_model.pkl
-feature_names.pkl
-```
 
 ---
 
-## 🌐 API Development
+# 🤖 Models Evaluated
 
-Built using:
+The following machine learning algorithms were evaluated:
+
+* Random Forest Classifier
+* Gradient Boosting Classifier
+* XGBoost Classifier
+
+Best Performing Model:
 
 ```text
-FastAPI
+Random Forest Classifier
 ```
 
-Endpoints:
+Accuracy Achieved:
 
-### Home
-
-```http
-GET /
+```text
+83.72%
 ```
 
-Response:
+---
 
-```json
-{
-  "message": "Student Placement Prediction API Running"
-}
-```
+# 🌐 API Architecture
 
 ```mermaid
 sequenceDiagram
@@ -275,13 +254,34 @@ ML_Model-->>FastAPI: Placement Result
 FastAPI-->>Swagger: JSON Response
 
 Swagger-->>User: Placed / Not Placed
+```
+
 ---
 
-### Predict Placement
+# ⚙️ API Endpoints
+
+## Home Endpoint
+
+```http
+GET /
+```
+
+Response:
+
+```json
+{
+    "message": "Student Placement Prediction API Running"
+}
+```
+
+---
+
+## Prediction Endpoint
 
 ```http
 POST /predict
 ```
+
 Example Request:
 
 ```json
@@ -301,7 +301,7 @@ Example Request:
 }
 ```
 
-Response:
+Example Response:
 
 ```json
 {
@@ -311,31 +311,61 @@ Response:
 
 ---
 
-# ⚙️ Installation
+# 🎯 Prediction Pipeline
 
-Clone repository:
+```mermaid
+flowchart LR
 
-```bash
-git clone https://github.com/Harsharyan05/student-placement-predictor.git
+A[Student Input]
+
+A --> B[API Request]
+
+B --> C[Data Transformation]
+
+C --> D[Feature Alignment]
+
+D --> E[Random Forest Model]
+
+E --> F[Prediction]
+
+F --> G[Placed]
+
+F --> H[Not Placed]
 ```
 
-Move into project:
+---
 
-```bash
-cd student-placement-predictor
+# ☁️ Deployment Architecture
+
+```mermaid
+flowchart LR
+
+A[Local Development]
+
+A --> B[Git]
+
+B --> C[GitHub Repository]
+
+C --> D[Render Cloud]
+
+D --> E[Public API]
+
+E --> F[Swagger Docs]
+
+E --> G[External Applications]
 ```
 
-Install dependencies:
+---
+
+# 🚀 Run Locally
+
+Install Dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-# ▶️ Run Locally
-
-Start FastAPI server:
+Start FastAPI Server:
 
 ```bash
 uvicorn app:app --reload
@@ -353,49 +383,72 @@ http://127.0.0.1:8000/docs
 
 ### Machine Learning
 
-- Scikit-Learn
-- Pandas
-- NumPy
-- Joblib
+* Python
+* Pandas
+* NumPy
+* Scikit-Learn
+* XGBoost
+* Joblib
 
 ### Backend
 
-- FastAPI
-- Uvicorn
+* FastAPI
+* Uvicorn
 
 ### Deployment
 
-- GitHub
-- Render
+* Git
+* GitHub
+* Render
+
+---
+
+# 📌 Key Learning Outcomes
+
+This project demonstrates practical experience in:
+
+✅ Data Cleaning
+
+✅ Feature Engineering
+
+✅ Machine Learning Classification
+
+✅ Model Evaluation
+
+✅ FastAPI Development
+
+✅ REST API Design
+
+✅ Swagger Documentation
+
+✅ Git & GitHub
+
+✅ Cloud Deployment using Render
 
 ---
 
 # 📈 Future Improvements
 
-- Hyperparameter Tuning
-- Cross Validation
-- Feature Importance Visualization
-- Streamlit Frontend
-- Docker Deployment
-- CI/CD Pipeline
+* Hyperparameter Tuning
+* Cross Validation
+* Feature Importance Analysis
+* Streamlit Dashboard
+* Docker Containerization
+* CI/CD Pipeline
+* Automated Model Retraining
 
 ---
 
 # 👨‍💻 Author
 
-HARSH ARYAN
+**Harsh Aryan**
 
-B.Tech Electronics and Communication Engineering
+B.Tech Electronics & Communication Engineering
 
-Interested in:
+Interests:
 
-- Machine Learning
-- Data Science
-- Artificial Intelligence
-- Backend Development
-
----
-
-# ⭐ If you found this project useful
-
-Give it a star on GitHub.
+* Machine Learning
+* Data Science
+* Artificial Intelligence
+* Backend Development
+* Cloud Deployment
