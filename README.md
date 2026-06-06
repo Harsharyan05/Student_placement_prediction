@@ -32,7 +32,7 @@ This project solves that classification problem using supervised machine learnin
 
 ---
 
-# 🏗️ Project Architecture
+# 🏗️ System Architecture
 
 ```mermaid
 flowchart TD
