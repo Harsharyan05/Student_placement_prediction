@@ -186,7 +186,33 @@ Accuracy Achieved:
 ```text
 83.72%
 ```
+```mermaid
+flowchart TD
 
+A[placement.csv]
+
+A --> B[Load Dataset]
+
+B --> C[Drop Salary Column]
+
+C --> D[Encode Categorical Features]
+
+D --> E[Train Test Split]
+
+E --> F[Random Forest]
+
+E --> G[Gradient Boosting]
+
+E --> H[XGBoost]
+
+F --> I[Model Comparison]
+G --> I
+H --> I
+
+I --> J[Best Model Selection]
+
+J --> K[placement_model.pkl]
+```
 ---
 
 ## Step 5: Model Serialization
